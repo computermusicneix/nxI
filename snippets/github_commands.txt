@@ -1,0 +1,13 @@
+
+(1) Create a new repo on github
+(2) $ git config --global user.name "username"
+(3) $ git config --global user.email "mail@gmail.com"
+(4) cd on folder
+(5) $ git init
+(6) $ git add -A
+(7) $ git commit -m "20160519"
+(8) $ git remote add origin https://github.com/username/repo.git
+(9) $ git push -u origin master
+
+
+

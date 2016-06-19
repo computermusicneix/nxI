@@ -1,0 +1,4 @@
+cd '/home/neix/.local/share/SuperCollider/quarks'
+sudo svn add '/home/neix/.local/share/SuperCollider/quarks/nxQuark/nxQuark.quark' 
+sudo svn commit -m "adding nxQuark" nxQuark
+

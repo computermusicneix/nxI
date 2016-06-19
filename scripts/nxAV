@@ -1,0 +1,26 @@
+#!/bin/bash
+
+jackd -dalsa -dhw:1 -r44100 -p1024 -n2 & 
+emacs -sclang &
+sleep 2 
+pd-l2ork -jack -inchannels 4 -open $HOME/neix/puredata/nxInit.pd -path $HOME/neix/puredata &
+sleep 5 
+jack_disconnect pure_data_0:output0 system:playback_1
+jack_disconnect pure_data_0:output1 system:playback_2
+jack_disconnect system:capture_1 pure_data_0:input0
+jack_disconnect system:capture_2 pure_data_0:input1
+jack_disconnect system:capture_1 SuperCollider:in_1
+jack_disconnect system:capture_2 SuperCollider:in_2
+jack_connect pure_data_0:output0 SuperCollider:in_1
+jack_connect pure_data_0:output1 SuperCollider:in_2
+jack_connect SuperCollider:out_1 pure_data_0:input0
+jack_connect SuperCollider:out_2 pure_data_0:input1
+jack_connect SuperCollider:out_3 pure_data_0:input2
+jack_connect SuperCollider:out_4 pure_data_0:input3
+jack_connect SuperCollider:out_3 system:playback_1
+jack_connect SuperCollider:out_4 system:playback_2
+
+
+
+
+

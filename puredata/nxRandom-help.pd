@@ -1,0 +1,15 @@
+#N canvas 418 444 450 237 10;
+#X obj 36 120 nxRandom;
+#X floatatom 36 162 5 0 0 0 - - -;
+#X msg 36 35 bang;
+#X floatatom 58 64 5 0 0 1 Min. - -;
+#X floatatom 81 92 5 0 0 1 Max. - -;
+#X text 198 42 nxRandom.;
+#X text 197 62 Generates a pseudo-random number;
+#X text 198 77 between min and max.;
+#X text 305 169 Miquel Parera.;
+#X text 305 183 September \, 2013;
+#X connect 0 0 1 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 1;
+#X connect 4 0 0 2;

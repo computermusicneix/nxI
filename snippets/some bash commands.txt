@@ -1,0 +1,73 @@
+-> .ogv to .avi
+
+mencoder -idx input.ogv -ovc lavc -lavcopts vqscale=3 -oac mp3lame -o out.avi
+
+-> .wav to .mp3
+
+lame -b 320 --tt "title" --ta "author" --tl "album" --ty "year" --tn "track number" --tc "license" in.wav out.mp3
+
+-> all .wav in a folder to .mp3
+
+for x in *.wav;do lame -b 320 $x ${x%.wav}.mp3; done
+
+--> with some id3 info (track numbers? / cover?)
+
+for x in *.wav;do lame -b 320 --tt "${x%.wav}" --ta "Miquel Parera Jaques" --ty "2012" --tc "cc-by-nc-sa" $x ${x%.wav}.mp3; done
+
+-> .flac to .wav
+
+flac -d file.wav
+
+--> for a dir
+
+for x in *.flac;do flac -d "$x"; done
+
+--> .mp3 to .wav for a dir
+
+for x in *.mp3;do sox $x ${x%.mp3}.wav; done
+
+-> info about audio files
+
+soxi file
+
+-> wav 48000 to wav 44100
+
+ecasound -f:16,2,44100 -i resample,auto,in.wav -o out.wav
+
+-> change the user a a file
+
+chown -user file
+
+--> search a file
+
+find -name "name"
+
+or
+
+sudo find ~/ -name "name"
+
+--> list of .wav files:
+
+ls -1 -v *.wav > list.txt
+
+--> folder to flac
+
+for x in *.wav;do flac --best $x;done 
+
+--> id3 on flac for a folder:
+
+for x in *.flac;do id3v2 -a 'Miquel Parera Jaques' -A 'album' -t ${x%.flac} -y '2013' -c 'cc-by-sa' $x; done
+
+--> wav to ogg a folder
+
+for x in *.wav;do oggenc -q 10 -a 'Miquel Parera Jaques' -l 'album' -t ${x%.wav} -d '2013' $x; done
+
+--> List of files and the paths (Sort files alphanumerically by version):
+
+tree -f -i -v > list.txt
+
+--> SOX
+
+.. wav to mp3 folder
+
+

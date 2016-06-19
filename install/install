@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cp startup.scd $HOME/.config/SuperCollider
+
+cp -r Extensions $HOME/.local/share/SuperCollider 

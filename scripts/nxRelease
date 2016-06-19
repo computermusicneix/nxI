@@ -1,0 +1,143 @@
+#!/bin/bash
+
+# variables
+
+TITLE1=$1
+TITLE2=$2
+Release=$3
+CODE=$4
+YEAR=$(date +"%Y")
+DATE=$(date +"%x") 
+
+TIME1=`soxi -d "$TITLE1".wav`
+TIME2=`soxi -d "$TITLE2".wav`
+
+TOTALTIME=`soxi -T -d "$TITLE1".wav "$TITLE2".wav`
+
+# Create info file
+
+echo -e "Title: "$Release >> info.txt
+echo -e "Date: "$DATE"\n" >> info.txt
+echo -e "Tracks:" >> info.txt
+echo -e "1- "$TITLE1 "-" $TIME1 >> info.txt
+echo -e "2- "$TITLE2 "-" $TIME2"\n" >> info.txt
+echo -e "Total time: " $TOTALTIME"\n" >> info.txt
+echo -e "Programmed by: Miquel Parera\n\nDescription: LiveCoding & Algorithmic & random sounds & graphics.\n\nSoftware Used:\nSound: SuperCollider (http://supercollider.github.io/)\nGraphics: Processing (https://processing.org)\n\n
+License: CC-BY-SA (http://creativecommons.org/licenses/by-sa/4.0/)\n
+More info: http://musicnumbers.es/" >> info.txt
+
+
+# make dirs
+
+mkdir $Release
+
+mkdir $Release"//"$Release"_mp3"
+mkdir $Release"//"$Release"_flac"
+mkdir $Release"//"$Release"_avi"
+
+mkdir $Release"//"$Release"_mp3//images"
+mkdir $Release"//"$Release"_flac//images"
+mkdir $Release"//"$Release"_avi//images"
+
+mkdir $Release"//"$Release"_mp3//code"
+mkdir $Release"//"$Release"_flac//code"
+mkdir $Release"//"$Release"_avi//code"
+
+
+
+# cover
+
+ORDER="convert "$TITLE1".jpg -resize 170% "$TITLE1"-cover1.jpg"
+$ORDER
+
+ORDER="convert "$TITLE1"-cover1.jpg -crop 1429x1417+509+56 "$Release"-cover.jpg"
+$ORDER
+
+`convert "$Release"-cover.jpg -stroke black -fill white -linewidth 10 -draw 'rectangle 182,638 1247,778' "$Release"-cover.jpg`
+
+`convert "$Release"-cover.jpg -gravity center -font Cabin-Bold -pointsize 40 -annotate 0 'Miquel Parera & Computer - '"$Release" "$Release"-cover.jpg`
+
+
+
+# wav to mp3 and id3 tags
+
+`lame -b 320 --tt "$TITLE1" --ta 'Miquel Parera & Computer' --ti "$Release"-cover.jpg --tl "$Release" --tn 1 --ty "$YEAR" --tc cc-by-sa "$TITLE1".wav`
+
+`lame -b 320 --tt "$TITLE2" --ta 'Miquel Parera & Computer' --ti "$Release"-cover.jpg --tl "$Release" --tn 2 --ty "$YEAR" --tc cc-by-sa "$TITLE2".wav`
+
+
+# wav to flac
+
+`for x in *.wav;do flac --best $x;done;`
+
+
+# id3 on flac
+
+`id3v2 -a 'Miquel Parera & Computer' -A "$Release" -t "$TITLE1" -y "$YEAR" -c 'cc-by-sa' -T 1 "$TITLE1".flac`
+
+`id3v2 -a 'Miquel Parera & Computer' -A "$Release" -t "$TITLE2" -y "$YEAR" -c 'cc-by-sa' -T 2 "$TITLE2".flac`
+
+
+# join avi and wav
+
+ORDER="ffmpeg -i "$TITLE1".wav -i "$TITLE1".avi -acodec copy -vcodec copy "$Release"/"$Release"_avi/"$TITLE1".avi"
+$ORDER
+
+ORDER="ffmpeg -i "$TITLE2".wav -i "$TITLE2".avi -acodec copy -vcodec copy "$Release"/"$Release"_avi/"$TITLE2".avi"
+$ORDER
+
+
+# move mp3 files
+
+`for x in *.mp3;do mv $x "$Release"/"$Release"_mp3;done`
+
+# move flac files
+
+`for x in *.flac;do mv $x "$Release"/"$Release"_flac;done`
+
+# copy image files
+
+`cp "$Release"-cover.jpg "$Release"/"$Release"_flac/images`
+`cp "$Release"-cover.jpg "$Release"/"$Release"_mp3/images`
+`cp "$Release"-cover.jpg "$Release"/"$Release"_avi/images`
+
+`cp "$Release".jpg "$Release"/"$Release"_flac/images`
+`cp "$Release".jpg "$Release"/"$Release"_mp3/images`
+`cp "$Release".jpg "$Release"/"$Release"_avi/images`
+
+`cp "$TITLE1".jpg "$Release"/"$Release"_flac/images`
+`cp "$TITLE2".jpg "$Release"/"$Release"_flac/images`
+
+`cp "$TITLE1".jpg "$Release"/"$Release"_mp3/images`
+`cp "$TITLE2".jpg "$Release"/"$Release"_mp3/images`
+
+`cp "$TITLE1".jpg "$Release"/"$Release"_avi/images`
+`cp "$TITLE2".jpg "$Release"/"$Release"_avi/images`
+
+`rm *.jpg`
+`rm *.avi`
+`rm *.wav`
+
+`cp "$CODE".scd "$Release"/"$Release"_avi/code`
+`cp "$CODE".scd "$Release"/"$Release"_mp3/code`
+`cp "$CODE".scd "$Release"/"$Release"_flac/code`
+
+
+`cp nxRelease "$Release"/"$Release"_avi/code`
+`cp nxRelease "$Release"/"$Release"_mp3/code`
+`cp nxRelease "$Release"/"$Release"_flac/code`
+
+
+`cp info.txt "$Release"/"$Release"_avi`
+`cp info.txt "$Release"/"$Release"_mp3`
+`cp info.txt "$Release"/"$Release"_flac`
+
+`rm info.txt`
+
+echo "RELEASE "$Release " COMPLETED"
+
+
+
+
+
+

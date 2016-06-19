@@ -1,0 +1,45 @@
+#N canvas 1 82 450 377 10;
+#X obj 199 155 triang;
+#X msg 199 122 bang;
+#X floatatom 199 193 5 0 0 0 - - -;
+#X floatatom 98 93 5 0 0 0 - - -;
+#X floatatom 38 93 5 0 0 0 - - -;
+#X text 96 73 Min.;
+#X text 35 72 Max.;
+#X obj 83 151 -;
+#X floatatom 83 181 5 0 0 0 - - -;
+#X obj 83 238 *;
+#X obj 167 255 +;
+#X floatatom 167 286 5 0 0 0 - - -;
+#X obj 45 209 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 150 231 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 83 118 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 167 313 outlet;
+#X obj 37 20 inlet;
+#X obj 89 20 inlet;
+#X obj 140 20 inlet;
+#X text 287 284 Miquel Parera.;
+#X text 287 298 September \, 2013;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 9 1;
+#X connect 2 0 12 0;
+#X connect 2 0 13 0;
+#X connect 3 0 10 1;
+#X connect 3 0 7 1;
+#X connect 3 0 14 0;
+#X connect 4 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 11 0 15 0;
+#X connect 12 0 9 0;
+#X connect 13 0 10 0;
+#X connect 14 0 7 0;
+#X connect 16 0 1 0;
+#X connect 17 0 3 0;
+#X connect 18 0 4 0;

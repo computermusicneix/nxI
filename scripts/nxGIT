@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DATE=$(date +"%x") 
+COMMIT='git commit -a -m '$DATE''
+
+
+git init & git add . & $COMMIT & git push -u origin master
+
+ 
