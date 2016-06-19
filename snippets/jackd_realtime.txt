@@ -1,6 +1,15 @@
-Creating a "realtime" group
-As the super-user ("root") run the following commands from a terminal window:
+1.Create the file:
 
-groupadd realtime
-usermod -a -G realtime yourUserID
-You should substitute your actual user id or "login" for "yourUserID".
+$ sudo gedit /etc/security/limits.d/99-realtime.conf
+
+2.Put this lines and save:
+
+@realtime - rtprio	99
+@realtime - memlock	unlimited 
+
+3.Run these commands:
+
+$ sudo groupadd realtime
+$ sudo usermod -a -G realtime yourUserID
+
+4.Reboot
