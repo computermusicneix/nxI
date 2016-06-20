@@ -9,5 +9,23 @@
 (8) $ git remote add origin https://github.com/username/repo.git
 (9) $ git push -u origin master
 
+(1) Add a file
+(2) $ git add file
+(3) $ git commit -n "add a file"
+(4) $ git push origin master
+
+(1) Delete and repush entire directory
+(2) Delete .git folder
+(3) cd to project
+(4) $ git init
+(5) $ git add .
+(6) $ git commit -m 'Initial commit'
+(7) $ git remote add origin https://github.com/computermusicneix/neix
+(8) $ git push --force --set-upstream origin master
+
+(1) Save changes on files
+(2) $ git add file1 file2
+(3) $ git commit -m "20160619"
+(4) $ git push origin master
 
 

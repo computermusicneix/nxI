@@ -13,7 +13,7 @@ NXVRec {
 			History.start;
 		}).start;}
 	*b{ arg beta;
-		^Task.new( { 
+		^Task.new( {
 			alpha = Date.getDate.format("nx"++beta++"%Y-%m-%d_%H_%M_%S").postln;
             		Server.default.recHeaderFormat = "WAV";
 			0.6.wait;
@@ -33,4 +33,7 @@ NXVRec {
 			0.6.wait;
 			History.saveStory(alpha++".scd");
 		}).start;
-	}}
+	}
+	*title { var title = alpha; ^title; }
+}
+
