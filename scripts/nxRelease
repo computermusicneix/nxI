@@ -4,15 +4,19 @@
 
 TITLE1=$1
 TITLE2=$2
-Release=$3
-CODE=$4
+TITLE3=$3
+TITLE4=$4
+Release=$5
+CODE=$6
 YEAR=$(date +"%Y")
 DATE=$(date +"%x") 
 
 TIME1=`soxi -d "$TITLE1".wav`
 TIME2=`soxi -d "$TITLE2".wav`
+TIME3=`soxi -d "$TITLE3".wav`
+TIME4=`soxi -d "$TITLE4".wav`
 
-TOTALTIME=`soxi -T -d "$TITLE1".wav "$TITLE2".wav`
+TOTALTIME=`soxi -T -d "$TITLE1".wav "$TITLE2".wav "$TITLE3".wav "$TITLE4".wav`
 
 # Create info file
 
@@ -20,7 +24,9 @@ echo -e "Title: "$Release >> info.txt
 echo -e "Date: "$DATE"\n" >> info.txt
 echo -e "Tracks:" >> info.txt
 echo -e "1- "$TITLE1 "-" $TIME1 >> info.txt
-echo -e "2- "$TITLE2 "-" $TIME2"\n" >> info.txt
+echo -e "2- "$TITLE2 "-" $TIME2 >> info.txt
+echo -e "3- "$TITLE3 "-" $TIME3 >> info.txt
+echo -e "4- "$TITLE4 "-" $TIME4"\n" >> info.txt
 echo -e "Total time: " $TOTALTIME"\n" >> info.txt
 echo -e "Programmed by: Miquel Parera\n\nDescription: LiveCoding & Algorithmic & random sounds & graphics.\n\nSoftware Used:\nSound: SuperCollider (http://supercollider.github.io/)\nGraphics: Processing (https://processing.org)\n\n
 License: CC-BY-SA (http://creativecommons.org/licenses/by-sa/4.0/)\n
@@ -47,10 +53,61 @@ mkdir $Release"//"$Release"_avi//code"
 
 # cover
 
-ORDER="convert "$TITLE1".jpg -resize 170% "$TITLE1"-cover1.jpg"
+# make images
+
+# screenshots
+
+ORDER="ffmpeg -ss 00:03:00 -i "$TITLE1".avi -q:v 0 -vframes 1 "$TITLE1".jpg"
 $ORDER
 
-ORDER="convert "$TITLE1"-cover1.jpg -crop 1429x1417+509+56 "$Release"-cover.jpg"
+ORDER="ffmpeg -ss 00:03:00 -i "$TITLE2".avi -q:v 0 -vframes 1 "$TITLE2".jpg"
+$ORDER
+
+ORDER="ffmpeg -ss 00:03:00 -i "$TITLE3".avi -q:v 0 -vframes 1 "$TITLE3".jpg"
+$ORDER
+
+ORDER="ffmpeg -ss 00:03:00 -i "$TITLE4".avi -q:v 0 -vframes 1 "$TITLE4".jpg"
+$ORDER
+
+# cut
+
+ORDER="convert "$TITLE1".jpg -crop 854x120 "$TITLE1".jpg"
+$ORDER
+
+ORDER="convert "$TITLE2".jpg -crop 854x120 "$TITLE2".jpg"
+$ORDER
+
+ORDER="convert "$TITLE3".jpg -crop 854x120 "$TITLE3".jpg"
+$ORDER
+
+ORDER="convert "$TITLE4".jpg -crop 854x120 "$TITLE4".jpg"
+$ORDER
+
+# montage
+
+ORDER="montage -mode concatenate -tile 1x "$TITLE1"-0.jpg "$TITLE2"-0.jpg "$TITLE3"-0.jpg "$TITLE4"-0.jpg "$Release".jpg"
+$ORDER
+
+# gif
+
+ORDER="convert -delay 15 -loop 0 "$TITLE1"-0.jpg "$TITLE1"-1.jpg "$TITLE1"-2.jpg "$TITLE1"-3.jpg "$TITLE1".gif"
+$ORDER
+
+ORDER="convert -delay 15 -loop 0 "$TITLE2"-0.jpg "$TITLE2"-1.jpg "$TITLE2"-2.jpg "$TITLE2"-3.jpg "$TITLE2".gif"
+$ORDER
+
+ORDER="convert -delay 15 -loop 0 "$TITLE3"-0.jpg "$TITLE3"-1.jpg "$TITLE3"-2.jpg "$TITLE3"-3.jpg "$TITLE3".gif"
+$ORDER
+
+ORDER="convert -delay 15 -loop 0 "$TITLE4"-0.jpg "$TITLE4"-1.jpg "$TITLE4"-2.jpg "$TITLE4"-3.jpg "$TITLE4".gif"
+$ORDER
+
+# cover
+
+ORDER="convert "$Release".jpg -resize 170% "$Release"-cover1.jpg"
+$ORDER
+
+ORDER="convert "$Release"-cover1.jpg -crop 1429x1417+509+56 "$Release"-cover.jpg"
 $ORDER
 
 `convert "$Release"-cover.jpg -stroke black -fill white -linewidth 10 -draw 'rectangle 182,638 1247,778' "$Release"-cover.jpg`
@@ -65,6 +122,10 @@ $ORDER
 
 `lame -b 320 --tt "$TITLE2" --ta 'Miquel Parera & Computer' --ti "$Release"-cover.jpg --tl "$Release" --tn 2 --ty "$YEAR" --tc cc-by-sa "$TITLE2".wav`
 
+`lame -b 320 --tt "$TITLE3" --ta 'Miquel Parera & Computer' --ti "$Release"-cover.jpg --tl "$Release" --tn 3 --ty "$YEAR" --tc cc-by-sa "$TITLE3".wav`
+
+`lame -b 320 --tt "$TITLE4" --ta 'Miquel Parera & Computer' --ti "$Release"-cover.jpg --tl "$Release" --tn 4 --ty "$YEAR" --tc cc-by-sa "$TITLE4".wav`
+
 
 # wav to flac
 
@@ -77,6 +138,10 @@ $ORDER
 
 `id3v2 -a 'Miquel Parera & Computer' -A "$Release" -t "$TITLE2" -y "$YEAR" -c 'cc-by-sa' -T 2 "$TITLE2".flac`
 
+`id3v2 -a 'Miquel Parera & Computer' -A "$Release" -t "$TITLE3" -y "$YEAR" -c 'cc-by-sa' -T 3 "$TITLE3".flac`
+
+`id3v2 -a 'Miquel Parera & Computer' -A "$Release" -t "$TITLE4" -y "$YEAR" -c 'cc-by-sa' -T 4 "$TITLE4".flac`
+
 
 # join avi and wav
 
@@ -84,6 +149,12 @@ ORDER="ffmpeg -i "$TITLE1".wav -i "$TITLE1".avi -acodec copy -vcodec copy "$Rele
 $ORDER
 
 ORDER="ffmpeg -i "$TITLE2".wav -i "$TITLE2".avi -acodec copy -vcodec copy "$Release"/"$Release"_avi/"$TITLE2".avi"
+$ORDER
+
+ORDER="ffmpeg -i "$TITLE3".wav -i "$TITLE3".avi -acodec copy -vcodec copy "$Release"/"$Release"_avi/"$TITLE3".avi"
+$ORDER
+
+ORDER="ffmpeg -i "$TITLE4".wav -i "$TITLE4".avi -acodec copy -vcodec copy "$Release"/"$Release"_avi/"$TITLE4".avi"
 $ORDER
 
 
