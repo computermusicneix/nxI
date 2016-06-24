@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# variables
+
+TITLE1=$1
+TITLE2=$2
+TITLE3=$3
+TITLE4=$4
+Release=$5
+CODE=$6
+YEAR=$(date +"%Y")
+DATE=$(date +"%x") 
+
+# cover
+
+# make images
+
+# screenshots
+
+ORDER="ffmpeg -ss 00:03:00 -i "$TITLE1".avi -q:v 0 -vframes 1 "$TITLE1".jpg"
+$ORDER
+
+ORDER="ffmpeg -ss 00:03:00 -i "$TITLE2".avi -q:v 0 -vframes 1 "$TITLE2".jpg"
+$ORDER
+
+ORDER="ffmpeg -ss 00:03:00 -i "$TITLE3".avi -q:v 0 -vframes 1 "$TITLE3".jpg"
+$ORDER
+
+ORDER="ffmpeg -ss 00:03:00 -i "$TITLE4".avi -q:v 0 -vframes 1 "$TITLE4".jpg"
+$ORDER
+
+# cut
+
+ORDER="convert "$TITLE1".jpg -crop 854x120 "$TITLE1".jpg"
+$ORDER
+
+ORDER="convert "$TITLE2".jpg -crop 854x120 "$TITLE2".jpg"
+$ORDER
+
+ORDER="convert "$TITLE3".jpg -crop 854x120 "$TITLE3".jpg"
+$ORDER
+
+ORDER="convert "$TITLE4".jpg -crop 854x120 "$TITLE4".jpg"
+$ORDER
+
+# montage
+
+ORDER="montage -mode concatenate -tile 1x "$TITLE1"-0.jpg "$TITLE2"-0.jpg "$TITLE3"-0.jpg "$TITLE4"-0.jpg "$Release".jpg"
+$ORDER
+
+# gif
+
+ORDER="convert -delay 15 -loop 0 "$TITLE1"-0.jpg "$TITLE1"-1.jpg "$TITLE1"-2.jpg "$TITLE1"-3.jpg "$TITLE1".gif"
+$ORDER
+
+ORDER="convert -delay 15 -loop 0 "$TITLE2"-0.jpg "$TITLE2"-1.jpg "$TITLE2"-2.jpg "$TITLE2"-3.jpg "$TITLE2".gif"
+$ORDER
+
+ORDER="convert -delay 15 -loop 0 "$TITLE3"-0.jpg "$TITLE3"-1.jpg "$TITLE3"-2.jpg "$TITLE3"-3.jpg "$TITLE3".gif"
+$ORDER
+
+ORDER="convert -delay 15 -loop 0 "$TITLE4"-0.jpg "$TITLE4"-1.jpg "$TITLE4"-2.jpg "$TITLE4"-3.jpg "$TITLE4".gif"
+$ORDER
+
+# cover
+
+ORDER="convert "$Release".jpg -resize 300% "$Release"-cover1.jpg"
+$ORDER
+
+ORDER="convert "$Release"-cover1.jpg -crop 1429x1417+566+11 "$Release"-cover.jpg"
+$ORDER
+
+`convert "$Release"-cover.jpg -stroke black -fill white -linewidth 10 -draw 'rectangle 182,638 1247,778' "$Release"-cover.jpg`
+
+`convert "$Release"-cover.jpg -gravity center -font Cabin-Bold -pointsize 40 -annotate 0 'Miquel Parera & Computer - '"$Release" "$Release"-cover.jpg`

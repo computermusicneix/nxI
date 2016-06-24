@@ -104,10 +104,10 @@ $ORDER
 
 # cover
 
-ORDER="convert "$Release".jpg -resize 170% "$Release"-cover1.jpg"
+ORDER="convert "$Release".jpg -resize 300% "$Release"-cover1.jpg"
 $ORDER
 
-ORDER="convert "$Release"-cover1.jpg -crop 1429x1417+509+56 "$Release"-cover.jpg"
+ORDER="convert "$Release"-cover1.jpg -crop 1429x1417+566+11 "$Release"-cover.jpg"
 $ORDER
 
 `convert "$Release"-cover.jpg -stroke black -fill white -linewidth 10 -draw 'rectangle 182,638 1247,778' "$Release"-cover.jpg`
@@ -178,26 +178,44 @@ $ORDER
 
 `cp "$TITLE1".jpg "$Release"/"$Release"_flac/images`
 `cp "$TITLE2".jpg "$Release"/"$Release"_flac/images`
+`cp "$TITLE3".jpg "$Release"/"$Release"_flac/images`
+`cp "$TITLE4".jpg "$Release"/"$Release"_flac/images`
 
 `cp "$TITLE1".jpg "$Release"/"$Release"_mp3/images`
 `cp "$TITLE2".jpg "$Release"/"$Release"_mp3/images`
+`cp "$TITLE3".jpg "$Release"/"$Release"_mp3/images`
+`cp "$TITLE4".jpg "$Release"/"$Release"_mp3/images`
 
 `cp "$TITLE1".jpg "$Release"/"$Release"_avi/images`
 `cp "$TITLE2".jpg "$Release"/"$Release"_avi/images`
+`cp "$TITLE3".jpg "$Release"/"$Release"_avi/images`
+`cp "$TITLE4".jpg "$Release"/"$Release"_avi/images`
+
+`cp "$TITLE1".gif "$Release"/"$Release"_flac/images`
+`cp "$TITLE2".gif "$Release"/"$Release"_flac/images`
+`cp "$TITLE3".gif "$Release"/"$Release"_flac/images`
+`cp "$TITLE4".gif "$Release"/"$Release"_flac/images`
+
+`cp "$TITLE1".gif "$Release"/"$Release"_mp3/images`
+`cp "$TITLE2".gif "$Release"/"$Release"_mp3/images`
+`cp "$TITLE3".gif "$Release"/"$Release"_mp3/images`
+`cp "$TITLE4".gif "$Release"/"$Release"_mp3/images`
+
+`cp "$TITLE1".gif "$Release"/"$Release"_avi/images`
+`cp "$TITLE2".gif "$Release"/"$Release"_avi/images`
+`cp "$TITLE3".gif "$Release"/"$Release"_avi/images`
+`cp "$TITLE4".gif "$Release"/"$Release"_avi/images`
 
 `rm *.jpg`
 `rm *.avi`
 `rm *.wav`
+`rm *.gif`
 
 `cp "$CODE".scd "$Release"/"$Release"_avi/code`
 `cp "$CODE".scd "$Release"/"$Release"_mp3/code`
 `cp "$CODE".scd "$Release"/"$Release"_flac/code`
 
-
-`cp nxRelease "$Release"/"$Release"_avi/code`
-`cp nxRelease "$Release"/"$Release"_mp3/code`
-`cp nxRelease "$Release"/"$Release"_flac/code`
-
+`rm *.scd`
 
 `cp info.txt "$Release"/"$Release"_avi`
 `cp info.txt "$Release"/"$Release"_mp3`
