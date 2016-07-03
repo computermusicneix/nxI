@@ -3,7 +3,7 @@
 jackd -dalsa -dhw:1 -r44100 -p1024 -n2 & 
 scide &
 sleep 2 
-pd-l2ork -jack -inchannels 4 -nogui -open $HOME/neix/puredata/nxInit.pd -path $HOME/neix/puredata &
+pd-l2ork -nogui -jack -inchannels 4 -open $HOME/neix/puredata/nxInit.pd -path $HOME/neix/puredata &
 sleep 5 
 jack_disconnect pure_data_0:output0 system:playback_1
 jack_disconnect pure_data_0:output1 system:playback_2
@@ -19,7 +19,8 @@ jack_connect SuperCollider:out_3 pure_data_0:input2
 jack_connect SuperCollider:out_4 pure_data_0:input3
 jack_connect SuperCollider:out_3 system:playback_1
 jack_connect SuperCollider:out_4 system:playback_2
-
+sleep 5
+devilspie2
 
 
 

@@ -2,4 +2,6 @@
 
 cp startup.scd $HOME/.config/SuperCollider
 
-cp -r Extensions $HOME/.local/share/SuperCollider 
+cp -r Extensions $HOME/.local/share/SuperCollider
+
+cp nxDevil.lua $HOME/.config/devilspie2 

@@ -28,7 +28,7 @@ echo -e "2- "$TITLE2 "-" $TIME2 >> info.txt
 echo -e "3- "$TITLE3 "-" $TIME3 >> info.txt
 echo -e "4- "$TITLE4 "-" $TIME4"\n" >> info.txt
 echo -e "Total time: " $TOTALTIME"\n" >> info.txt
-echo -e "Programmed by: Miquel Parera\n\nDescription: LiveCoding & Algorithmic & random sounds & graphics.\n\nSoftware Used:\nSound: SuperCollider (http://supercollider.github.io/)\nGraphics: Processing (https://processing.org)\n\n
+echo -e "Programmed by: Miquel Parera\n\nDescription: LiveCoding,Algorithmic & Random AV Drones.\n\nSoftware Used:\nSound: SuperCollider (http://supercollider.github.io/)\nSound and Graphics: PureData (https://puredata.info/)\n\n
 License: CC-BY-SA (http://creativecommons.org/licenses/by-sa/4.0/)\n
 More info: http://musicnumbers.es/" >> info.txt
 
@@ -71,16 +71,16 @@ $ORDER
 
 # cut
 
-ORDER="convert "$TITLE1".jpg -crop 854x120 "$TITLE1".jpg"
+ORDER="convert "$TITLE1".jpg -crop 1435x220 "$TITLE1".jpg"
 $ORDER
 
-ORDER="convert "$TITLE2".jpg -crop 854x120 "$TITLE2".jpg"
+ORDER="convert "$TITLE2".jpg -crop 1435x220 "$TITLE2".jpg"
 $ORDER
 
-ORDER="convert "$TITLE3".jpg -crop 854x120 "$TITLE3".jpg"
+ORDER="convert "$TITLE3".jpg -crop 1435x220 "$TITLE3".jpg"
 $ORDER
 
-ORDER="convert "$TITLE4".jpg -crop 854x120 "$TITLE4".jpg"
+ORDER="convert "$TITLE4".jpg -crop 1435x220 "$TITLE4".jpg"
 $ORDER
 
 # montage
@@ -104,10 +104,10 @@ $ORDER
 
 # cover
 
-ORDER="convert "$Release".jpg -resize 300% "$Release"-cover1.jpg"
+ORDER="convert "$Release".jpg -resize 170% "$Release"-cover1.jpg"
 $ORDER
 
-ORDER="convert "$Release"-cover1.jpg -crop 1429x1417+566+11 "$Release"-cover.jpg"
+ORDER="convert "$Release"-cover1.jpg -crop 1429x1417+509+56 "$Release"-cover.jpg"
 $ORDER
 
 `convert "$Release"-cover.jpg -stroke black -fill white -linewidth 10 -draw 'rectangle 182,638 1247,778' "$Release"-cover.jpg`
