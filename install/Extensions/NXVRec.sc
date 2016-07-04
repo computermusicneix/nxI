@@ -17,7 +17,7 @@ NXVRec {
 			alpha = Date.getDate.format("nx"++beta++"%Y-%m-%d_%H_%M_%S").postln;
             		Server.default.recHeaderFormat = "WAV";
 			1.wait;
-			video = "ffmpeg -loglevel 0 -f x11grab -s 1440x900 -i :0.0 -vcodec libx264 -preset ultrafast -qp 0 -threads 0 " ++ alpha ++".avi";
+			video = "ffmpeg -loglevel 0 -f x11grab -s 1360x768 -i :0.0+32,84 -vcodec libx264 -preset ultrafast -qp 0 -threads 0 " ++ alpha ++".avi";
 			1.wait;
 			Server.default.recSampleFormat = "int16";
 			1.wait;
