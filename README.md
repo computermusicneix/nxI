@@ -1,8 +1,13 @@
 
-Code for livecoding and algorithmic AV drones.
+Code for Livecoding and Algorithmic AV Drones.
 
-Emacs => ( SuperCollider + Puredata )
+( SuperCollider + Puredata )
 
-SuperCollider 3.6.3
-Pd-L2Ork version 20160614
-Emacs 24
+SuperCollider 3.6.3 : http://supercollider.github.io/
+
+Pd-L2Ork version 20160614 : http://l2ork.music.vt.edu/main/make-your-own-l2ork/software/
+
+Devilspie2 : http://www.gusnan.se/devilspie2/
+
+Linux Mint : https://www.linuxmint.com/
+
