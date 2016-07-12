@@ -71,16 +71,16 @@ $ORDER
 
 # cut
 
-ORDER="convert "$TITLE1".jpg -crop 1435x192 "$TITLE1".jpg"
+ORDER="convert "$TITLE1".jpg -crop 1435x220 "$TITLE1".jpg"
 $ORDER
 
-ORDER="convert "$TITLE2".jpg -crop 1435x192 "$TITLE2".jpg"
+ORDER="convert "$TITLE2".jpg -crop 1435x220 "$TITLE2".jpg"
 $ORDER
 
-ORDER="convert "$TITLE3".jpg -crop 1435x192 "$TITLE3".jpg"
+ORDER="convert "$TITLE3".jpg -crop 1435x220 "$TITLE3".jpg"
 $ORDER
 
-ORDER="convert "$TITLE4".jpg -crop 1435x192 "$TITLE4".jpg"
+ORDER="convert "$TITLE4".jpg -crop 1435x220 "$TITLE4".jpg"
 $ORDER
 
 # montage
@@ -104,10 +104,10 @@ $ORDER
 
 # cover
 
-ORDER="convert "$Release".jpg -resize 190% "$Release"-cover1.jpg"
+ORDER="convert "$Release".jpg -resize 170% "$Release"-cover1.jpg"
 $ORDER
 
-ORDER="convert "$Release"-cover1.jpg -crop 1429x1417+577+21 "$Release"-cover.jpg"
+ORDER="convert "$Release"-cover1.jpg -crop 1429x1417+509+56 "$Release"-cover.jpg"
 $ORDER
 
 `convert "$Release"-cover.jpg -stroke black -fill white -linewidth 10 -draw 'rectangle 182,638 1247,778' "$Release"-cover.jpg`
@@ -211,9 +211,9 @@ $ORDER
 `rm *.wav`
 `rm *.gif`
 
-`cp "$CODE".scd "$Release"/"$Release"_avi/code`
-`cp "$CODE".scd "$Release"/"$Release"_mp3/code`
-`cp "$CODE".scd "$Release"/"$Release"_flac/code`
+`cp "$CODE ""$Release"/"$Release"_avi/code`
+`cp "$CODE ""$Release"/"$Release"_mp3/code`
+`cp "$CODE ""$Release"/"$Release"_flac/code`
 
 `rm *.scd`
 
