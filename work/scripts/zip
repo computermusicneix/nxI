@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DATE=$(date +"neix-%Y%m%d")
+
+echo $DATE
+
+tar -zcvf $DATE.tar.gz -C $HOME/neix .

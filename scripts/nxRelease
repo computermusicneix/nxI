@@ -7,9 +7,9 @@ TITLE2=$2
 TITLE3=$3
 TITLE4=$4
 Release=$5
-CODE=$6
 YEAR=$(date +"%Y")
-DATE=$(date +"%x") 
+DATE=$(date +"%x")
+CODEDATE=$(date +"neix-%Y%m%d") 
 
 TIME1=`soxi -d "$TITLE1".wav`
 TIME2=`soxi -d "$TITLE2".wav`
@@ -211,11 +211,16 @@ $ORDER
 `rm *.wav`
 `rm *.gif`
 
-`cp "$CODE ""$Release"/"$Release"_avi/code`
-`cp "$CODE ""$Release"/"$Release"_mp3/code`
-`cp "$CODE ""$Release"/"$Release"_flac/code`
+tar -zcvf $CODEDATE.tar.gz -C $HOME/neix .
 
-`rm *.scd`
+`cp "$CODEDATE".tar.gz "$Release"/"$Release"_avi/code`
+`cp "$CODEDATE".tar.gz "$Release"/"$Release"_mp3/code`
+`cp "$CODEDATE".tar.gz "$Release"/"$Release"_flac/code`
+
+cp $CODEDATE.tar.gz $HOME/neix/work/security
+
+rm $CODEDATE.tar.gz
+
 
 `cp info.txt "$Release"/"$Release"_avi`
 `cp info.txt "$Release"/"$Release"_mp3`
