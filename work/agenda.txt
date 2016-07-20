@@ -1,0 +1,7 @@
+2016.07.20
+
+- Hacer una clase para lanzar fácilmente los NXGM []
+
+- Desactivar guardado de .tar.gz en nxRelease [X]
+
+- Preparar una muestra de impro One Day Drone (antes de septiembre) hangar.org []

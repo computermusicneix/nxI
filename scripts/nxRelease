@@ -217,8 +217,6 @@ tar -zcvf $CODEDATE.tar.gz -C $HOME/neix .
 `cp "$CODEDATE".tar.gz "$Release"/"$Release"_mp3/code`
 `cp "$CODEDATE".tar.gz "$Release"/"$Release"_flac/code`
 
-cp $CODEDATE.tar.gz $HOME/neix/work/security
-
 rm $CODEDATE.tar.gz
 
 
