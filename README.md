@@ -1,7 +1,7 @@
 
 nxI
 
-Code for Livecoding and Algorithmic AV Drones.
+Code for Livecoding and Algorithmic Audiovisual.
 
 ( SuperCollider + Puredata )
 
