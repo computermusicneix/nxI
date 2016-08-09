@@ -15,7 +15,7 @@ s.boot;
 };
 
 s.waitForBoot{
-	NXStageLimiter.activate;
+	NXStageLimiter4.activate;
 	//r.unixCmd;
 	//Buffer.read(s,Platform.userAppSupportDir +/+ 'nxDrones/nxDrone_1.wav',bufnum:1);
 	//Buffer.read(s,Platform.userAppSupportDir +/+ 'nxDrones/nxDrone_2.wav',bufnum:2);

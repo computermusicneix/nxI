@@ -10,8 +10,8 @@ SynthDef(\nxPad1, {|freq = 0, durA = 0, durB = 0, bus = 0, trig = 0, fl = 0, vol
 	SinOsc.ar((freq/2).midicps,0)
 	* EnvGen.kr(Env.asr(durA,1,durB),trig);
 	Out.ar(bus, Normalizer.ar(FreeVerb.ar(
-		klang.distort * 2 +
-		 DelayN.ar(klang,0.02,SinOsc.kr(fl/2,0,0.005,0.005),1.5)
+		klang.distort * 3+
+		DelayN.ar(klang,rrand(0.1,1.0),rrand(0.1,1.0)).distort * 3
 		,0.7,0.9,1.0),vol,0.01));
 }).store;
 )
