@@ -58,7 +58,7 @@ Tdef(\a).stop; d.set(\trig,0);
 
 // pad
 
-e = Synth(\nxPad1, [\bus,1,\fl,b,\vol,0.25]);
+e = Synth(\nxPad1, [\bus,1,\fl,b,\vol,0.5]);
 
 (
 Tdef(\b, {
@@ -123,7 +123,7 @@ Tdef(\c).stop; f.set(\trig,0);
 
 // pad
 
-g = Synth(\nxPad1, [\bus,2,\fl,b,\vol,0.25]);
+g = Synth(\nxPad1, [\bus,2,\fl,b,\vol,0.5]);
 
 (
 Tdef(\d, {
