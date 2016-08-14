@@ -11,6 +11,58 @@ YEAR=$(date +"%Y")
 DATE=$(date +"%x")
 CODEDATE=$(date +"nxI-%Y%m%d") 
 
+# 4 channels to 2 channels
+
+sox $TITLE1.wav $TITLE1-1.wav remix 1
+sox $TITLE1.wav $TITLE1-2.wav remix 2
+sox $TITLE1.wav $TITLE1-3.wav remix 3
+sox $TITLE1.wav $TITLE1-4.wav remix 4
+
+sox --combine mix-power $TITLE1-1.wav $TITLE1-3.wav $TITLE1-left.wav
+sox --combine mix-power $TITLE1-2.wav $TITLE1-4.wav $TITLE1-right.wav
+
+sox -M $TITLE1-left.wav $TITLE1-right.wav $TITLE1.wav
+
+rm $TITLE1-1.wav $TITLE1-2.wav $TITLE1-3.wav $TITLE1-4.wav $TITLE1-left.wav $TITLE1-right.wav
+
+sox $TITLE2.wav $TITLE2-1.wav remix 1
+sox $TITLE2.wav $TITLE2-2.wav remix 2
+sox $TITLE2.wav $TITLE2-3.wav remix 3
+sox $TITLE2.wav $TITLE2-4.wav remix 4
+
+sox --combine mix-power $TITLE2-1.wav $TITLE2-3.wav $TITLE2-left.wav
+sox --combine mix-power $TITLE2-2.wav $TITLE2-4.wav $TITLE2-right.wav
+
+sox -M $TITLE2-left.wav $TITLE2-right.wav $TITLE2.wav
+
+rm $TITLE2-1.wav $TITLE2-2.wav $TITLE2-3.wav $TITLE2-4.wav $TITLE2-left.wav $TITLE2-right.wav
+
+sox $TITLE3.wav $TITLE3-1.wav remix 1
+sox $TITLE3.wav $TITLE3-2.wav remix 2
+sox $TITLE3.wav $TITLE3-3.wav remix 3
+sox $TITLE3.wav $TITLE3-4.wav remix 4
+
+sox --combine mix-power $TITLE3-1.wav $TITLE3-3.wav $TITLE3-left.wav
+sox --combine mix-power $TITLE3-2.wav $TITLE3-4.wav $TITLE3-right.wav
+
+sox -M $TITLE3-left.wav $TITLE3-right.wav $TITLE3.wav
+
+rm $TITLE3-1.wav $TITLE3-2.wav $TITLE3-3.wav $TITLE3-4.wav $TITLE3-left.wav $TITLE3-right.wav
+
+sox $TITLE4.wav $TITLE4-1.wav remix 1
+sox $TITLE4.wav $TITLE4-2.wav remix 2
+sox $TITLE4.wav $TITLE4-3.wav remix 3
+sox $TITLE4.wav $TITLE4-4.wav remix 4
+
+sox --combine mix-power $TITLE4-1.wav $TITLE4-3.wav $TITLE4-left.wav
+sox --combine mix-power $TITLE4-2.wav $TITLE4-4.wav $TITLE4-right.wav
+
+sox -M $TITLE4-left.wav $TITLE4-right.wav $TITLE4.wav
+
+rm $TITLE4-1.wav $TITLE4-2.wav $TITLE4-3.wav $TITLE4-4.wav $TITLE4-left.wav $TITLE4-right.wav
+
+# get info from files
+
 TIME1=`soxi -d "$TITLE1".wav`
 TIME2=`soxi -d "$TITLE2".wav`
 TIME3=`soxi -d "$TITLE3".wav`
@@ -28,7 +80,7 @@ echo -e "2- "$TITLE2 "-" $TIME2 >> info.txt
 echo -e "3- "$TITLE3 "-" $TIME3 >> info.txt
 echo -e "4- "$TITLE4 "-" $TIME4"\n" >> info.txt
 echo -e "Total time: " $TOTALTIME"\n" >> info.txt
-echo -e "Programmed by: Miquel Parera\n\nDescription: LiveCoding,Algorithmic & Random AV Drones.\n\nSoftware Used:\nSound: SuperCollider (http://supercollider.github.io/)\nSound and Graphics: PureData (https://puredata.info/)\n\n
+echo -e "Programmed by: Miquel Parera\n\nDescription: LiveCoding,Algorithmic & Random Audiovisual.\n\nSoftware Used:\nSound: SuperCollider (http://supercollider.github.io/)\nSound and Graphics: PureData (https://puredata.info/)\n\n
 License: CC-BY-SA (http://creativecommons.org/licenses/by-sa/4.0/)\n
 More info: http://musicnumbers.es/" >> info.txt
 

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# variables
+
+TITLE1=$1
+
+sox $TITLE1.wav $TITLE1-1.wav remix 1
+sox $TITLE1.wav $TITLE1-2.wav remix 2
+sox $TITLE1.wav $TITLE1-3.wav remix 3
+sox $TITLE1.wav $TITLE1-4.wav remix 4
+
+sox --combine mix-power $TITLE1-1.wav $TITLE1-3.wav $TITLE1-left.wav
+sox --combine mix-power $TITLE1-2.wav $TITLE1-4.wav $TITLE1-right.wav
+
+sox -M $TITLE1-left.wav $TITLE1-right.wav $TITLE1-StereoSox.wav
