@@ -1,3 +1,29 @@
+// nxArp2
+// Miquel Parera - August, 2016
+
+(
+SynthDef(\nxArp2, {|freq = 0, durA = 0, durB = 0, bus = 0, trig = 0, vol = 0|
+	var klang;
+    klang =
+	RHPF.ar(
+	RHPF.ar(
+			Pulse.ar((freq/4).midicps)
+			,freq.midicps*2,0.1),
+		     freq.midicps,0.1)
+	* EnvGen.kr(Env.perc(durA/100,durB/10),trig);
+	Out.ar(bus, Normalizer.ar(
+		FreeVerb.ar((klang.distort*100)
+			,rrand(0.1,0.9)
+			,rrand(0.1,0.9)
+			,rrand(0.1,0.9))
+		,vol,0.01));
+}).store;
+)
+
+//
+d.free;
+d = Synth(\nxArp2, [\bus,0,\vol,0.5]);
+
 // Blank for arp & pad (1)
 
 // 1rst section
@@ -10,7 +36,7 @@ NXVRec4.a;
 
 NXVRec4.b("I");
 
-d = Synth(\nxArp1, [\bus,0,\vol,0.75]);
+d = Synth(\nxArp2, [\bus,0,\vol,0.75]);
 
 (
 m.sendMsg("/open", Platform.userHomeDir ++ "/nxI/puredata/NXGM00501.pd");
@@ -25,7 +51,7 @@ c = rrand(3,8);
 
 (
 Tdef(\a, {
-	var root = rrand(40,125),
+	var root = rrand(40,150),
 	melody = Array.fill(c, { root + a[rrand(-12,12)] }),
 	durA = Array.fill(c, { rrand(0.01,10.0) }),
 	durB = Array.fill(c, { rrand(0.01,10.0) }),
@@ -52,6 +78,7 @@ m.sendMsg("/erase", "");
 
 Tdef(\a).play;
 Tdef(\a).stop; d.set(\trig,0);
+d.free;
 
 // pad
 
@@ -92,7 +119,7 @@ f = Synth(\nxArp1, [\bus,3,\vol,0.75]);
 
 (
 Tdef(\c, {
-	var root = rrand(40,125),
+	var root = rrand(40,200),
 	melody = Array.fill(c, { root + a[rrand(-12,12)] }),
 	durA = Array.fill(c, { rrand(0.01,10.0) }),
 	durB = Array.fill(c, { rrand(0.01,10.0) }),

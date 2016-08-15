@@ -2,14 +2,14 @@
 
 
 (
-a = 0;
+x = 0;
 w = SkipJack({
         if(History.current.player.isActive.not){
                 1.wait;
-                History.loadStory(Platform.userHomeDir ++ "/nxI/historys/nxI2016-08-14_00_33_57.scd");
+                History.loadStory(Platform.userHomeDir ++ "/nxI/historys/nxI2016-08-15_03_45_40.scd");
                 History.play;
-                a = a + 1;
+                x = x + 1;
 
         }
-}, 0.1, { a > 2 }, name: \histWatch);
+}, 0.1, { x > 2 }, name: \histWatch);
 )

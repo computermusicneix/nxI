@@ -1,8 +1,3 @@
-// Blank for arp & pad (1)
-
-// 1rst section
-
-// arp
 
 NXVRec4.a;
 
@@ -10,13 +5,13 @@ NXVRec4.a;
 
 NXVRec4.b("I");
 
-d = Synth(\nxArp1, [\bus,0,\vol,0.75]);
+d = Synth(\nxArp2, [\bus,0,\vol,0.5]);
 
 (
-m.sendMsg("/open", Platform.userHomeDir ++ "/nxI/puredata/NXGM00501.pd");
-m.sendMsg("/open", Platform.userHomeDir ++ "/nxI/puredata/NXGM00602.pd");
-m.sendMsg("/open", Platform.userHomeDir ++ "/nxI/puredata/NXGM00504.pd");
-m.sendMsg("/open", Platform.userHomeDir ++ "/nxI/puredata/NXGM00603.pd");
+m.sendMsg("/open", Platform.userHomeDir ++ "/nxI/puredata/NXGM00701.pd");
+m.sendMsg("/open", Platform.userHomeDir ++ "/nxI/puredata/NXGM00802.pd");
+m.sendMsg("/open", Platform.userHomeDir ++ "/nxI/puredata/NXGM00704.pd");
+m.sendMsg("/open", Platform.userHomeDir ++ "/nxI/puredata/NXGM00803.pd");
 )
 
 a = Scale.choose;
@@ -55,7 +50,7 @@ Tdef(\a).stop; d.set(\trig,0);
 
 // pad
 
-e = Synth(\nxPad1, [\bus,1,\fl,b,\vol,0.5]);
+e = Synth(\nxPad2, [\bus,1,\fl,b,\vol,0.5]);
 
 (
 Tdef(\b, {
@@ -88,7 +83,7 @@ Tdef(\b).stop; e.set(\trig, 0);
 
 // arp
 
-f = Synth(\nxArp1, [\bus,3,\vol,0.75]);
+f = Synth(\nxArp2, [\bus,3,\vol,0.5]);
 
 (
 Tdef(\c, {
@@ -120,7 +115,7 @@ Tdef(\c).stop; f.set(\trig,0);
 
 // pad
 
-g = Synth(\nxPad1, [\bus,2,\fl,b,\vol,0.5]);
+g = Synth(\nxPad2, [\bus,2,\fl,b,\vol,0.5]);
 
 (
 Tdef(\d, {
@@ -153,10 +148,10 @@ g.free;f.free; e.free; d.free;
 a.free; b.free; c.free;
 
 (
-m.sendMsg("/close", "NXGM00601.pd");
-m.sendMsg("/close", "NXGM00504.pd");
-m.sendMsg("/close", "NXGM00602.pd");
-m.sendMsg("/close", "NXGM00501.pd");
+m.sendMsg("/close", "NXGM00701.pd");
+m.sendMsg("/close", "NXGM00704.pd");
+m.sendMsg("/close", "NXGM00802.pd");
+m.sendMsg("/close", "NXGM00803.pd");
 )
 
 NXVRec4.c;
