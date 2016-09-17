@@ -1,3 +1,7 @@
 #!/bin/bash
 
-jackd -dalsa -dhw:0 -r44100 -p1024 -n2 & emacs -sclang
+jackd -dalsa -dhw:1 -r44100 -p1024 -n2 & 
+scide &
+sleep 5
+jack_connect SuperCollider:out_3 system:playback_1
+jack_connect SuperCollider:out_4 system:playback_2
