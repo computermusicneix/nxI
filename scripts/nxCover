@@ -1,0 +1,38 @@
+#!/bin/bash
+
+TITLE1=$1
+TITLE2=$2
+TITLE3=$3
+TITLE4=$4
+Release=$5
+
+# cut
+
+ORDER="convert "$TITLE1".jpg -crop 1435x220 "$TITLE1".jpg"
+$ORDER
+
+ORDER="convert "$TITLE2".jpg -crop 1435x220 "$TITLE2".jpg"
+$ORDER
+
+ORDER="convert "$TITLE3".jpg -crop 1435x220 "$TITLE3".jpg"
+$ORDER
+
+ORDER="convert "$TITLE4".jpg -crop 1435x220 "$TITLE4".jpg"
+$ORDER
+
+# montage
+
+ORDER="montage -mode concatenate -tile 1x "$TITLE1"-0.jpg "$TITLE2"-0.jpg "$TITLE3"-0.jpg "$TITLE4"-0.jpg "$Release".jpg"
+$ORDER
+
+# cover
+
+ORDER="convert "$Release".jpg -resize 170% "$Release"-cover1.jpg"
+$ORDER
+
+ORDER="convert "$Release"-cover1.jpg -crop 1429x1417+509+56 "$Release"-cover.jpg"
+$ORDER
+
+`convert "$Release"-cover.jpg -stroke black -fill white -linewidth 10 -draw 'rectangle 182,638 1247,778' "$Release"-cover.jpg`
+
+`convert "$Release"-cover.jpg -gravity center -font Cabin-Bold -pointsize 40 -annotate 0 'Miquel Parera & Computer - '"$Release" "$Release"-cover.jpg`
